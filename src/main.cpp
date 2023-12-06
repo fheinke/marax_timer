@@ -13,6 +13,8 @@ Timer t;
 
 // set to true/false when using another type of reed sensor
 bool reedOpenSensor = true;
+int minutesUntilSleep = 20;
+
 bool displayOn = true;
 int timerCount = 0;
 int prevTimerCount = 0;
@@ -113,7 +115,7 @@ void detectChanges() {
   } else {
     timerStopMillis = 0;
   }
-  if (!timerStarted && displayOn && timerDisplayOffMillis >= 0 && (millis() - timerDisplayOffMillis > 1000 * 60 * 60)) {
+  if (!timerStarted && displayOn && timerDisplayOffMillis >= 0 && (millis() - timerDisplayOffMillis > 1000 * 60 * minutesUntilSleep)) {
     timerDisplayOffMillis = 0;
     timerCount = 0;
     prevTimerCount = 0;
