@@ -1,7 +1,3 @@
-#define D5 (14)
-#define D6 (12)
-#define D7 (13)
-
 #define PUMP_PIN D7
 
 #include <Adafruit_SSD1306.h>
@@ -12,7 +8,7 @@
 #include <SoftwareSerial.h>
 
 Adafruit_SSD1306 display(128, 64, &Wire, -1);
-SoftwareSerial mySerial(D5, D6);
+SoftwareSerial mySerial(14, 12);
 Timer t;
 
 // set to true/false when using another type of reed sensor
@@ -32,6 +28,10 @@ char receivedChars[numChars];
 static byte ndx = 0;
 char endMarker = '\n';
 char rc;
+
+void updateDisplay();
+void detectChanges();
+void getMachineInput();
 
 void setup() {
   WiFi.mode(WIFI_OFF);
